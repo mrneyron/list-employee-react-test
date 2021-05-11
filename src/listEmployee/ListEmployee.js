@@ -27,13 +27,13 @@ const ListEmployee = () => {
       </Paper>
       <Grid container spacing={2}>
         {list.map((item) => (
-          <Grid key={item.lastName + item.name} item xs={12} sm={6} md={4} lg={2}>
+          <Grid key={item.lastName + item.name} item xs={12} sm={6} md={4} xl={2}>
             <Paper className={classes.paper}>
               <Employee isAdd={false} item={item} />
             </Paper>
           </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} xl={2}>
           <AddEmployee />
         </Grid>
         <Grid item xs={12}>

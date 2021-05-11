@@ -1,24 +1,20 @@
+export const getEmployeeList = () => JSON.parse(localStorage.getItem('employees'));
+
+export const setEmployeeList = (employees) => {
+  localStorage.setItem('employees', JSON.stringify(employees));
+};
+
 export const addEmployee = (object) => {
-  let employees = JSON.parse(localStorage.getItem('employees'));
-  console.log(employees);
+  let employees = getEmployeeList();
   if (employees === null) {
     employees = [];
   }
   employees.push(object);
-  console.log(employees);
-  localStorage.setItem('employees', JSON.stringify(employees));
+  setEmployeeList(employees);
 };
 
-export const editEmployee = (id, object) => {
+export const editEmployee = (object) => {
 
-};
-
-export const getEmployeeList = () => {
-  return JSON.parse(localStorage.getItem('employees'));
-};
-
-export const setEmployeeList = (employees) => {
-  localStorage.setItem('employees', JSON.stringify(employees));
 };
 
 export const deleteEmployee = (id) => {
