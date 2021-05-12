@@ -53,27 +53,31 @@ function DatePicker(props) {
     invalidDateMessage = 'Неверный формат даты', minDateMessage = 'Превышение минимальной даты',
     maxDateMessage = 'Превышение максимальной даты', format = 'DD.MM.YYYY', openTo = 'date',
     views = ['year', 'month', 'date'], disabled = false, variant = 'standard', label = 'Выберите дату',
-    smaller = false, fullWidth = true, required = true,
+    smaller = false, fullWidth = true, required = true, notCheck = false,
   } = props;
   const [dateValue, setDateValue] = useState(null);
+  const [errorValue, setErrorValue] = useState(null);
   const classes = useStyles();
 
   useEffect(() => {
     if (moment(value)._isValid) {
       if (value < moment().subtract(100, 'years') || value > moment().add(100, 'years')) {
         setDateValue('');
+        setErrorValue(true);
       } else {
         setDateValue(value);
+        setErrorValue(false);
       }
     } else {
       setDateValue('');
+      setErrorValue(true);
     }
   }, [value]);
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <KeyboardDatePicker
-        autoOk
+        error={notCheck ? false : errorValue}
         required={required}
         label={label}
         variant={variant}
@@ -86,7 +90,7 @@ function DatePicker(props) {
         disabled={disabled}
         minDate={minDate}
         maxDate={maxDate}
-        invalidDateMessage={invalidDateMessage}
+        invalidDateMessage={notCheck ? '' : invalidDateMessage}
         minDateMessage={minDateMessage}
         maxDateMessage={maxDateMessage}
         InputProps={{
@@ -109,8 +113,6 @@ function DatePicker(props) {
 }
 
 DatePicker.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   minDate: PropTypes.object,

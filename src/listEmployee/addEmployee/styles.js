@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   flipper: {
     position: 'relative',
-    height: '638px',
+    height: '628px',
     webkitTransformStyle: 'preserve-3d',
     mozTransformStyle: 'preserve-3d',
     transformStyle: 'preserve-3d',

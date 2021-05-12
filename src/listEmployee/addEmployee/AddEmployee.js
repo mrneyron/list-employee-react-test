@@ -6,13 +6,21 @@ import AddIcon from '@material-ui/icons/Add';
 import { useStyles } from './styles';
 import Employee from '../employee';
 
-export default function AddEmployee() {
+export default function AddEmployee(props) {
+  const {
+    reloadList,
+  } = props;
   const classes = useStyles();
 
   const [isAdd, setIsAdd] = useState(false);
 
   const handleSetIsAdd = () => {
     setIsAdd(!isAdd);
+  };
+
+  const handleReloadList = () => {
+    reloadList();
+    setIsAdd(false);
   };
 
   return (
@@ -28,7 +36,7 @@ export default function AddEmployee() {
           </Fab>
         </div>
         <div className={clsx(classes.back, classes.card)}>
-          <Employee isAdd handleSetIsAdd={handleSetIsAdd} />
+          <Employee isAdd handleSetIsAdd={handleSetIsAdd} handleReloadList={handleReloadList} />
         </div>
       </div>
     </div>
